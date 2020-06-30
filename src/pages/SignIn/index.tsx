@@ -3,6 +3,7 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
@@ -45,8 +46,13 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
+          return;
         }
-        addToast();
+        addToast({
+          type: 'error',
+          title: 'Error in autentication',
+          description: 'There was an error signing in! check the credentials!',
+        });
       }
     },
     [signIn, addToast],
@@ -70,10 +76,10 @@ const SignIn: React.FC = () => {
           <a href="forgot">Recupere password</a>
         </Form>
 
-        <a href="forgot">
+        <Link to="/signup">
           <FiLogIn />
           Criate Account
-        </a>
+        </Link>
       </Content>
       <Background />
     </Container>
