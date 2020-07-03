@@ -1,9 +1,10 @@
 import React, { useCallback, useRef } from 'react';
-import { FiEdit2, FiPower } from 'react-icons/fi';
+import { FiEdit2 } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
+import { Button as ButtonAnt } from 'antd';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, Background } from './styles';
 import Input from '../../components/Input';
@@ -43,9 +44,12 @@ const Dashboard: React.FC = () => {
           stock: Yup.string().required('stock required'),
           user_id: Yup.string().default(user.id),
         });
+
         await schema.validate(data, {
           abortEarly: false,
         });
+        data.user_id = user.id;
+        console.log(data);
         await api.post('/products', data);
         history.push('/dashboard');
         addToast({
@@ -93,10 +97,9 @@ const Dashboard: React.FC = () => {
           <Button type="submit">Create</Button>
         </Form>
         <Link to="/products">List Products</Link>
-        <button type="button" value="Logout" onClick={signOut}>
+        <ButtonAnt type="primary" value="Logout" onClick={signOut}>
           <h5>Logout</h5>
-          <FiPower />
-        </button>
+        </ButtonAnt>
       </Content>
       <Background />
     </Container>
