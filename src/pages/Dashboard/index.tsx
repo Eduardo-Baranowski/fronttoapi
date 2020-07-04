@@ -21,7 +21,6 @@ interface DashboardFormData {
   category: string;
   price: number;
   stock: number;
-  // user_id: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -40,22 +39,18 @@ const Dashboard: React.FC = () => {
           category: Yup.string().required('Category required'),
           price: Yup.string().required('Price required'),
           stock: Yup.string().required('stock required'),
-          // user_id: Yup.string().default(user.id),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        // data.user_id = user.id;
-        // console.log(data);
-
         await api.post('/products', data, {
           headers: {
             Authorization: localStorage.getItem('@HomeOffice:token'),
           },
         });
-        history.push('/products');
+        history.push('/dashboard');
         addToast({
           type: 'success',
           title: 'Submit success!',
