@@ -42,7 +42,7 @@ const AuthProvider: React.FC = ({ children }) => {
       password,
     });
     const { token, user } = response.data;
-    localStorage.setItem('@HomeOffice:token', token);
+    localStorage.setItem('@HomeOffice:token', `bearer ${token}`);
     localStorage.setItem('@HomeOffice:user', JSON.stringify(user));
 
     setData({ token, user });
