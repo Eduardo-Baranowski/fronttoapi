@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {} from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Button, Table } from 'antd';
+import api from '../../services/api';
 import { Container, Content, Background } from './styles';
 import { useAuth } from '../../hooks/auth';
 
@@ -12,11 +13,12 @@ interface ProductsFormData {
 
 const Products: React.FC = () => {
   const { signOut } = useAuth();
+
   const dataSource = [
     {
       key: '1',
       name: 'Wood',
-      description: 'Natural procduct',
+      description: 'Natural product',
       category: 'Natural',
       price: 100,
       stock: 10000,
