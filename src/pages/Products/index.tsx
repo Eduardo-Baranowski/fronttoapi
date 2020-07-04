@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {} from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Button, Table } from 'antd';
-import api from '../../services/api';
 import { Container, Content, Background } from './styles';
 import { useAuth } from '../../hooks/auth';
 
