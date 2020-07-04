@@ -30,8 +30,6 @@ const Dashboard: React.FC = () => {
   const { addToast } = useToast();
   const history = useHistory();
 
-  const { user } = useAuth();
-
   const handleSubmit = useCallback(
     async (data: DashboardFormData) => {
       try {
